@@ -50,3 +50,52 @@ pager访问页面缓存和文件。Table 对象通过pager发出页面请求：
    return table;
  }
 ```
+
+db_open() 调用 pager_open() 打开数据库文件并跟踪其大小。它还将页面缓存初始化为所有 NULL。
+
+```c
++Pager* pager_open(const char* filename) {
++  int fd = open(filename,
++                O_RDWR |      // Read/Write mode
++                    O_CREAT,  // Create file if it does not exist
++                S_IWUSR |     // User write permission
++                    S_IRUSR   // User read permission
++                );
++
++  if (fd == -1) {
++    printf("Unable to open file\n");
++    exit(EXIT_FAILURE);
++  }
++
++  off_t file_length = lseek(fd, 0, SEEK_END);
++
++  Pager* pager = malloc(sizeof(Pager));
++  pager->file_descriptor = fd;
++  pager->file_length = file_length;
++
++  for (uint32_t i = 0; i < TABLE_MAX_PAGES; i++) {
++    pager->pages[i] = NULL;
++  }
++
++  return pager;
++}
+```
+
+按照我们的新抽象，我们将获取页面的逻辑移动到它自己的方法中：
+
+```c
+void* row_slot(Table* table, uint32_t row_num) {
+   uint32_t page_num = row_num / ROWS_PER_PAGE;
+-  void* page = table->pages[page_num];
+-  if (page == NULL) {
+-    // Allocate memory only when we try to access page
+-    page = table->pages[page_num] = malloc(PAGE_SIZE);
+-  }
++  void* page = get_page(table->pager, page_num);
+   uint32_t row_offset = row_num % ROWS_PER_PAGE;
+   uint32_t byte_offset = row_offset * ROW_SIZE;
+   return page + byte_offset;
+ }
+```
+
+该方法 get_page() 具有处理缓存未命中的逻辑。我们假设页面一个接一个地保存在数据库文件中：第 0 页位于偏移量 0，第 1 页位于偏移量 4096，第 2 页位于偏移量 8192，依此类推。如果请求的页面位于文件边界之外，我们知道它应该是空白的，所以我们只是分配一些内存并返回它。稍后将缓存刷新到磁盘时，该页面将添加到文件中。
