@@ -8,7 +8,7 @@ B-Tree是SQLite用来表示表和索引的数据结构，所以这是一个非�
 - 插入/删除您已经找到的值很快（重新平衡的时间不变）
 - 遍历一系列值的速度很快（与哈希映射不同）
 
-B树不同于二叉树（“B”可能代表发明者的名字，但也可以代表“平衡”）。下面是一个示例 B 树：
+B-树不同于二叉树（“B”可能代表发明者的名字，但也可以代表“平衡”）。下面是一个示例 B-树：
 
 ![](./img/B-tree.png)
 
@@ -20,31 +20,30 @@ B树不同于二叉树（“B”可能代表发明者的名字，但也可以代
 - 根节点可以少于 m 个子节点，但必须至少具有 2 个
 - 如果根节点是叶节点（唯一的节点），则它仍有 0 个子节点
 
-上面的图片是一个B树，SQLite用它来存储索引。为了存储表，SQLites 使用一种称为 B+ 树的变体。
+上面的图片是一个B-树，SQLite用它来存储索引。为了存储表，SQLites 使用一种称为 B+ 树的变体。
 
 ||B-树|B+树|
 |----|-----|----|
-|Used to store 用于存储|Indexes 指标|	Tables 表|
+|Used to store 用于存储|Indexes 索引|	Tables 表|
 |内部节点存储密钥|	Yes|	Yes|
 |Internal nodes store values内部节点存储值|	Yes|	No|
 |Number of children per node 每个节点的子节点数|	 较少| 较多|
 |Internal nodes vs. leaf nodes内部节点与叶节点|	Same structure 相同的结构	|Different structure 不同的结构|
 
-在我们开始实现索引之前，我将只讨论 B+ 树，但我只将其称为 B 树或 btree。
+在我们开始实现索引之前，将只讨论 B+ 树，但我们将其当作 B-树或 btree来看待。
 
 具有子节点的节点称为“内部”节点。内部节点和叶节点的结构不同：
 
 |For an order-m tree…对于 m 阶树...|	Internal Node 内部节点|	Leaf Node 叶节点|
 |-------------|------------|------------|
-|Stores 存储|	keys and pointers to children
-指向孩子和指针|keys and values 键和值|
-|Number of keys 键数|	up to m-1 高达 m-1|	as many as will fit 尽可能多的适合|
+|Stores 存储|	keys and pointers to children指向孩子和指针|keys and values 键和值|
+|Number of keys 键数|	up to m-1 高达 m-1|	as many as will fit 尽可能多|
 |Number of pointers 指针数	|number of keys + 键数 + 1	|none 没有|
 |Number of values 值数|	none 没有	|number of keys 键数|
-|Key purpose 主要目的|	used for routing 用于路由|	paired with value 与价值配对|
+|Key purpose 主要目的|	used for routing 用于路由|	paired with value 查找值|
 |Stores values? 存储值？|	No	|Yes|
 
-我们通过一个例子来了解 B 树在插入元素时是如何生长的。为了简单起见，树的秩为 3。这意味着：
+我们通过一个例子来了解 B-树在插入元素时是如何生长的。为了简单起见，树的秩为 3。这意味着：
 
 - 每个内部节点最多 3 个子节点
 - 每个内部节点最多 2 个key
