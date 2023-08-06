@@ -1,0 +1,690 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>世界上最简单的编译器和虚拟机 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="part3.html" />
+    
+    
+    <link rel="prev" href="part1.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="part1.html">
+            
+                <a href="part1.html">
+            
+                    
+                    简介和设置REPL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="part2.html">
+            
+                <a href="part2.html">
+            
+                    
+                    世界上最简单的编译器和虚拟机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="part3.html">
+            
+                <a href="part3.html">
+            
+                    
+                    仅支持追加的单表内存数据库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="part4.html">
+            
+                <a href="part4.html">
+            
+                    
+                    特殊场景完善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="part5.html">
+            
+                <a href="part5.html">
+            
+                    
+                    持久化到磁盘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="part6.html">
+            
+                <a href="part6.html">
+            
+                    
+                    游标抽象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="part7.html">
+            
+                <a href="part7.html">
+            
+                    
+                    B-树简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="part8.html">
+            
+                <a href="part8.html">
+            
+                    
+                    B-树叶节点格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="part9.md">
+            
+                <span>
+            
+                    
+                    二进制搜索和重复键
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="part10.md">
+            
+                <span>
+            
+                    
+                    拆分叶节点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="part11.md">
+            
+                <span>
+            
+                    
+                    递归搜索B-树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="part12.md">
+            
+                <span>
+            
+                    
+                    扫描级B-树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="part13.md">
+            
+                <span>
+            
+                    
+                    拆分后更新父节点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="part14.md">
+            
+                <span>
+            
+                    
+                    拆分内部节点
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >世界上最简单的编译器和虚拟机</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x4E16;&#x754C;&#x4E0A;&#x6700;&#x7B80;&#x5355;&#x7684;&#x7F16;&#x8BD1;&#x5668;&#x548C;&#x865A;&#x62DF;&#x673A;">&#x4E16;&#x754C;&#x4E0A;&#x6700;&#x7B80;&#x5355;&#x7684;&#x7F16;&#x8BD1;&#x5668;&#x548C;&#x865A;&#x62DF;&#x673A;</h1>
+<p>&#x6211;&#x4EEC;&#x5C06;&#x4EFF;&#x7167;sqlite&#x6765;&#x5B9E;&#x73B0;&#x81EA;&#x5DF1;&#x7684;sqlite&#x3002;sqlite &#x7684;&#x201C;&#x524D;&#x7AEF;&#x201D;&#x662F;&#x4E00;&#x4E2A; SQL &#x7F16;&#x8BD1;&#x5668;&#xFF0C;&#x5B83;&#x89E3;&#x6790;&#x5B57;&#x7B26;&#x4E32;&#x5E76;&#x8F93;&#x51FA;&#x79F0;&#x4E3A;&#x5B57;&#x8282;&#x7801;&#x7684;&#x5185;&#x90E8;&#x8868;&#x793A;&#x3002;</p>
+<p>&#x6B64;&#x5B57;&#x8282;&#x7801;&#x5C06;&#x4F20;&#x9012;&#x5230;&#x865A;&#x62DF;&#x673A;&#xFF0C;&#x7531;&#x865A;&#x62DF;&#x673A;&#x6267;&#x884C;&#x5B83;&#x3002;</p>
+<p><img src="img/arch2.png" alt=""></p>
+<p>&#x50CF;&#x8FD9;&#x6837;&#x5C06;&#x4E8B;&#x60C5;&#x5206;&#x6210;&#x4E24;&#x4E2A;&#x6B65;&#x9AA4;&#x6709;&#x51E0;&#x4E2A;&#x4F18;&#x70B9;&#xFF1A;</p>
+<ul>
+<li><p>&#x964D;&#x4F4E;&#x6BCF;&#x4E2A;&#x90E8;&#x5206;&#x7684;&#x590D;&#x6742;&#x6027;&#xFF08;&#x4F8B;&#x5982;&#xFF0C;&#x865A;&#x62DF;&#x673A;&#x4E0D;&#x5FC5;&#x62C5;&#x5FC3;&#x8BED;&#x6CD5;&#x9519;&#x8BEF;&#xFF09;</p>
+</li>
+<li><p>&#x5141;&#x8BB8;&#x7F16;&#x8BD1;&#x4E00;&#x6B21;&#x5E38;&#x89C1;&#x67E5;&#x8BE2;&#x5E76;&#x7F13;&#x5B58;&#x5B57;&#x8282;&#x7801;&#x4EE5;&#x63D0;&#x9AD8;&#x6027;&#x80FD;</p>
+</li>
+</ul>
+<p>&#x8003;&#x8651;&#x5230;&#x8FD9;&#x4E00;&#x70B9;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x91CD;&#x6784;&#x6211;&#x4EEC;&#x7684; main &#x51FD;&#x6570;&#xFF0C;&#x5E76;&#x5728;&#x6B64;&#x8FC7;&#x7A0B;&#x4E2D;&#x652F;&#x6301;&#x4E24;&#x4E2A;&#x65B0;&#x5173;&#x952E;&#x5B57;&#xFF1A;</p>
+<pre><code class="lang-c"> <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>* argv[])</span> </span>{
+   InputBuffer* input_buffer = new_input_buffer();
+   <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+     print_prompt();
+     read_input(input_buffer);
+
+-    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strcmp</span>(input_buffer-&gt;buffer, <span class="hljs-string">&quot;.exit&quot;</span>) == <span class="hljs-number">0</span>) {
+-      <span class="hljs-built_in">exit</span>(EXIT_SUCCESS);
+-    } <span class="hljs-keyword">else</span> {
+-      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Unrecognized command &apos;%s&apos;.\n&quot;</span>, input_buffer-&gt;buffer);
++    <span class="hljs-keyword">if</span> (input_buffer-&gt;buffer[<span class="hljs-number">0</span>] == <span class="hljs-string">&apos;.&apos;</span>) {
++      <span class="hljs-keyword">switch</span> (do_meta_command(input_buffer)) {
++        <span class="hljs-keyword">case</span> (META_COMMAND_SUCCESS):
++          <span class="hljs-keyword">continue</span>;
++        <span class="hljs-keyword">case</span> (META_COMMAND_UNRECOGNIZED_COMMAND):
++          <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Unrecognized command &apos;%s&apos;\n&quot;</span>, input_buffer-&gt;buffer);
++          <span class="hljs-keyword">continue</span>;
++      }
+     }
++
++    Statement statement;
++    <span class="hljs-keyword">switch</span> (prepare_statement(input_buffer, &amp;statement)) {
++      <span class="hljs-keyword">case</span> (PREPARE_SUCCESS):
++        <span class="hljs-keyword">break</span>;
++      <span class="hljs-keyword">case</span> (PREPARE_UNRECOGNIZED_STATEMENT):
++        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Unrecognized keyword at start of &apos;%s&apos;.\n&quot;</span>,
++               input_buffer-&gt;buffer);
++        <span class="hljs-keyword">continue</span>;
++    }
++
++    execute_statement(&amp;statement);
++    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Executed.\n&quot;</span>);
+   }
+ }
+</code></pre>
+<p> &#x50CF; .exit &#x8FD9;&#x6837;&#x7684;&#x975E; SQL &#x8BED;&#x53E5;&#x79F0;&#x4E3A;&#x201C;&#x5143;&#x547D;&#x4EE4;&#x201D;&#x3002;&#x5B83;&#x4EEC;&#x90FD;&#x4EE5;&#x70B9;&#x5F00;&#x5934;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x68C0;&#x67E5;&#x5B83;&#x4EEC;&#x5E76;&#x5728;&#x5355;&#x72EC;&#x7684;&#x51FD;&#x6570;&#x4E2D;&#x5904;&#x7406;&#x5B83;&#x4EEC;&#x3002;</p>
+<p> &#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x6211;&#x4EEC;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x6B65;&#x9AA4;&#xFF0C;&#x5C06;&#x8F93;&#x5165;&#x884C;&#x8F6C;&#x6362;&#x4E3A;&#x8BED;&#x53E5;&#x7684;&#x5185;&#x90E8;&#x8868;&#x793A;&#x5F62;&#x5F0F;&#x3002;&#x8FD9;&#x662F;&#x6211;&#x4EEC;&#x7684; sqlite &#x524D;&#x7AEF;&#x7684;hacky&#x7248;&#x672C;&#x3002;</p>
+<p> &#x6700;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x51C6;&#x5907;&#x597D;&#x7684;&#x8BED;&#x53E5;&#x4F20;&#x9012;&#x7ED9; execute_statement &#x3002;&#x8FD9;&#x4E2A;&#x529F;&#x80FD;&#x6700;&#x7EC8;&#x5C06;&#x6210;&#x4E3A;&#x6211;&#x4EEC;&#x7684;&#x865A;&#x62DF;&#x673A;&#x3002;</p>
+<p> &#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x4E24;&#x4E2A;&#x65B0;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x6307;&#x793A;&#x6210;&#x529F;&#x6216;&#x5931;&#x8D25;&#x7684;&#x679A;&#x4E3E;&#xFF1A;</p>
+<pre><code class="lang-c"> <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">enum</span> {
+  META_COMMAND_SUCCESS,
+  META_COMMAND_UNRECOGNIZED_COMMAND
+} MetaCommandResult;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">enum</span> { 
+    PREPARE_SUCCESS, 
+    PREPARE_UNRECOGNIZED_STATEMENT 
+} PrepareResult;
+</code></pre>
+<p>do_meta_command &#x53EA;&#x662F;&#x73B0;&#x6709;&#x529F;&#x80FD;&#x7684;&#x5305;&#x88C5;&#x5668;&#xFF0C;&#x4E3A;&#x66F4;&#x591A;&#x547D;&#x4EE4;&#x7559;&#x51FA;&#x4E86;&#x7A7A;&#x95F4;&#xFF1A;</p>
+<pre><code class="lang-c"><span class="hljs-function">MetaCommandResult <span class="hljs-title">do_meta_command</span><span class="hljs-params">(InputBuffer* input_buffer)</span> </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strcmp</span>(input_buffer-&gt;buffer, <span class="hljs-string">&quot;.exit&quot;</span>) == <span class="hljs-number">0</span>) {
+    <span class="hljs-built_in">exit</span>(EXIT_SUCCESS);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> META_COMMAND_UNRECOGNIZED_COMMAND;
+  }
+}
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x7684;&#x201C;&#x51C6;&#x5907;&#x597D;&#x7684;&#x8BED;&#x53E5;&#x201D;&#x53EA;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x5177;&#x6709;&#x4E24;&#x4E2A;&#x53EF;&#x80FD;&#x503C;&#x7684;&#x679A;&#x4E3E;&#x3002;&#x5B83;&#x5C06;&#x5305;&#x542B;&#x66F4;&#x591A;&#x6570;&#x636E;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x5141;&#x8BB8;&#x5728;&#x8BED;&#x53E5;&#x4E2D;&#x4F7F;&#x7528;&#x53C2;&#x6570;&#xFF1A;</p>
+<pre><code class="lang-c"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">enum</span> { 
+    STATEMENT_INSERT, 
+    STATEMENT_SELECT 
+} StatementType;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> {
+  StatementType type;
+} Statement;
+</code></pre>
+<p>prepare_statement &#xFF08;&#x6211;&#x4EEC;&#x7684;&#x201C;SQL &#x7F16;&#x8BD1;&#x5668;&#x201D;&#xFF09;&#x73B0;&#x5728;&#x4E0D;&#x7406;&#x89E3; SQL&#x3002;&#x5176;&#x5B9E;&#x5B83;&#x53EA;&#x61C2;&#x4E24;&#x4E2A;&#x5B57;&#xFF1A;</p>
+<pre><code class="lang-c"><span class="hljs-function">PrepareResult <span class="hljs-title">prepare_statement</span><span class="hljs-params">(InputBuffer* input_buffer,
+                                Statement* statement)</span> </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strncmp</span>(input_buffer-&gt;buffer, <span class="hljs-string">&quot;insert&quot;</span>, <span class="hljs-number">6</span>) == <span class="hljs-number">0</span>) {
+    statement-&gt;type = STATEMENT_INSERT;
+    <span class="hljs-keyword">return</span> PREPARE_SUCCESS;
+  }
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strcmp</span>(input_buffer-&gt;buffer, <span class="hljs-string">&quot;select&quot;</span>) == <span class="hljs-number">0</span>) {
+    statement-&gt;type = STATEMENT_SELECT;
+    <span class="hljs-keyword">return</span> PREPARE_SUCCESS;
+  }
+
+  <span class="hljs-keyword">return</span> PREPARE_UNRECOGNIZED_STATEMENT;
+}
+</code></pre>
+<p>&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528; strncmp &#x6BD4;&#x8F83;&#x201C;insert&#x201D;&#xFF0C;&#x56E0;&#x4E3A; &#x201C;insert&#x201D; &#x5173;&#x952E;&#x5B57;&#x540E;&#x8DDF;&#x6570;&#x636E;&#x3002;&#xFF08;&#x4F8B;&#x5982; insert 1 cstack foo@bar.com &#xFF09;</p>
+<p>&#x6700;&#x540E;&#xFF0C; execute_statement &#x5305;&#x542B;&#x51E0;&#x4E2A;&#x5B58;&#x6839;&#xFF1A;</p>
+<pre><code class="lang-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">execute_statement</span><span class="hljs-params">(Statement* statement)</span> </span>{
+  <span class="hljs-keyword">switch</span> (statement-&gt;type) {
+    <span class="hljs-keyword">case</span> (STATEMENT_INSERT):
+      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;This is where we would do an insert.\n&quot;</span>);
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> (STATEMENT_SELECT):
+      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;This is where we would do a select.\n&quot;</span>);
+      <span class="hljs-keyword">break</span>;
+  }
+}
+</code></pre>
+<p>&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x5B83;&#x4E0D;&#x4F1A;&#x8FD4;&#x56DE;&#x4EFB;&#x4F55;&#x9519;&#x8BEF;&#x4EE3;&#x7801;&#xFF0C;&#x56E0;&#x4E3A;&#x76EE;&#x524D;&#x8FD8;&#x6CA1;&#x6709;&#x53EF;&#x80FD;&#x51FA;&#x9519;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x901A;&#x8FC7;&#x8FD9;&#x4E9B;&#x91CD;&#x6784;&#xFF0C;&#x6211;&#x4EEC;&#x6DFB;&#x52A0;&#x4E86;&#x4E24;&#x4E2A;&#x65B0;&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x5176;&#x6267;&#x884C;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-shell">PS D:\code\db021\code&gt; make
+gcc -g -O0 main.c -o db
+PS D:\code\db021\code&gt; .\db.exe
+db &gt; insert foo bar
+This is where we would do an insert.
+db &gt; exit
+Unrecognized keyword at start of &apos;exit&apos;.
+db &gt; .exit
+db &gt; delete foo
+Unrecognized keyword at start of &apos;delete foo&apos;.
+db &gt; select
+This is where we would do a select.
+Executed.
+db &gt; .tables
+Unrecognized command &apos;.tables&apos;
+db &gt; .exit
+PS D:\code\db021\code&gt;
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x6570;&#x636E;&#x5E93;&#x7684;&#x9AA8;&#x67B6;&#x6B63;&#x5728;&#x5F62;&#x6210;...&#x5982;&#x679C;&#x5B83;&#x5B58;&#x50A8;&#x6570;&#x636E;&#x4E0D;&#x662F;&#x5F88;&#x597D;&#x5417;&#xFF1F;&#x5728;&#x4E0B;&#x4E00;&#x90E8;&#x5206;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x5B9E;&#x73B0; insert &#x548C; select &#xFF0C;&#x521B;&#x5EFA;&#x4E16;&#x754C;&#x4E0A;&#x6700;&#x5DEE;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x5982;&#x4E0B;&#x90E8;&#x5206;&#x662F;&#x6211;&#x4EEC;&#x7684;&#x6240;&#x6709;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdbool.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> _WIN32</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAX_INPUT_BUFFER 4096</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+
+ <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">enum</span> {
+  META_COMMAND_SUCCESS,
+  META_COMMAND_UNRECOGNIZED_COMMAND
+} MetaCommandResult;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">enum</span> { 
+    PREPARE_SUCCESS, 
+    PREPARE_UNRECOGNIZED_STATEMENT 
+} PrepareResult;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">enum</span> { 
+    STATEMENT_INSERT, 
+    STATEMENT_SELECT 
+} StatementType;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> {
+  StatementType type;
+} Statement;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> {
+  <span class="hljs-keyword">char</span>* buffer;
+  <span class="hljs-keyword">size_t</span> buffer_length;
+  <span class="hljs-keyword">ssize_t</span> input_length;
+} InputBuffer;
+
+<span class="hljs-function">InputBuffer* <span class="hljs-title">new_input_buffer</span><span class="hljs-params">()</span> </span>{
+  InputBuffer* input_buffer = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(InputBuffer));
+  <span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> _WIN32</span>
+  input_buffer-&gt;buffer = <span class="hljs-built_in">malloc</span>(MAX_INPUT_BUFFER);
+  <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
+  input_buffer-&gt;buffer = <span class="hljs-literal">NULL</span>;
+  <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+  input_buffer-&gt;buffer_length = <span class="hljs-number">0</span>;
+  input_buffer-&gt;input_length = <span class="hljs-number">0</span>;
+
+  <span class="hljs-keyword">return</span> input_buffer;
+}
+
+<span class="hljs-function">MetaCommandResult <span class="hljs-title">do_meta_command</span><span class="hljs-params">(InputBuffer* input_buffer)</span> </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strcmp</span>(input_buffer-&gt;buffer, <span class="hljs-string">&quot;.exit&quot;</span>) == <span class="hljs-number">0</span>) {
+    <span class="hljs-built_in">exit</span>(EXIT_SUCCESS);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> META_COMMAND_UNRECOGNIZED_COMMAND;
+  }
+}
+
+<span class="hljs-function">PrepareResult <span class="hljs-title">prepare_statement</span><span class="hljs-params">(InputBuffer* input_buffer,
+                                Statement* statement)</span> </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strncmp</span>(input_buffer-&gt;buffer, <span class="hljs-string">&quot;insert&quot;</span>, <span class="hljs-number">6</span>) == <span class="hljs-number">0</span>) {
+    statement-&gt;type = STATEMENT_INSERT;
+    <span class="hljs-keyword">return</span> PREPARE_SUCCESS;
+  }
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strcmp</span>(input_buffer-&gt;buffer, <span class="hljs-string">&quot;select&quot;</span>) == <span class="hljs-number">0</span>) {
+    statement-&gt;type = STATEMENT_SELECT;
+    <span class="hljs-keyword">return</span> PREPARE_SUCCESS;
+  }
+
+  <span class="hljs-keyword">return</span> PREPARE_UNRECOGNIZED_STATEMENT;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">execute_statement</span><span class="hljs-params">(Statement* statement)</span> </span>{
+  <span class="hljs-keyword">switch</span> (statement-&gt;type) {
+    <span class="hljs-keyword">case</span> (STATEMENT_INSERT):
+      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;This is where we would do an insert.\n&quot;</span>);
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> (STATEMENT_SELECT):
+      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;This is where we would do a select.\n&quot;</span>);
+      <span class="hljs-keyword">break</span>;
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print_prompt</span><span class="hljs-params">()</span> </span>{ <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;db &gt; &quot;</span>); }
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">read_input</span><span class="hljs-params">(InputBuffer* input_buffer)</span> </span>{
+<span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> _WIN32</span>
+  <span class="hljs-keyword">size_t</span> len;
+  fgets(input_buffer-&gt;buffer, MAX_INPUT_BUFFER, <span class="hljs-built_in">stdin</span>);
+  len = <span class="hljs-built_in">strlen</span>(input_buffer-&gt;buffer);
+  <span class="hljs-keyword">if</span> (len &lt;= <span class="hljs-number">0</span>) {
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error reading input\n&quot;</span>);
+    <span class="hljs-built_in">exit</span>(EXIT_FAILURE);
+  }
+  input_buffer-&gt;input_length = len - <span class="hljs-number">1</span>;
+  input_buffer-&gt;buffer[len - <span class="hljs-number">1</span>] = <span class="hljs-string">&apos;\0&apos;</span>;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span>
+
+  <span class="hljs-keyword">ssize_t</span> bytes_read =
+      getline(&amp;(input_buffer-&gt;buffer), &amp;(input_buffer-&gt;buffer_length), <span class="hljs-built_in">stdin</span>);
+
+  <span class="hljs-keyword">if</span> (bytes_read &lt;= <span class="hljs-number">0</span>) {
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error reading input\n&quot;</span>);
+    <span class="hljs-built_in">exit</span>(EXIT_FAILURE);
+  }
+
+  <span class="hljs-comment">// Ignore trailing newline</span>
+  input_buffer-&gt;input_length = bytes_read - <span class="hljs-number">1</span>;
+  input_buffer-&gt;buffer[bytes_read - <span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">close_input_buffer</span><span class="hljs-params">(InputBuffer* input_buffer)</span> </span>{
+    <span class="hljs-built_in">free</span>(input_buffer-&gt;buffer);
+    <span class="hljs-built_in">free</span>(input_buffer);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>* argv[])</span> </span>{
+  InputBuffer* input_buffer = new_input_buffer();
+  <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+    print_prompt();
+    read_input(input_buffer);
+
+    <span class="hljs-keyword">if</span> (input_buffer-&gt;buffer[<span class="hljs-number">0</span>] == <span class="hljs-string">&apos;.&apos;</span>) {
+      <span class="hljs-keyword">switch</span> (do_meta_command(input_buffer)) {
+        <span class="hljs-keyword">case</span> (META_COMMAND_SUCCESS):
+          <span class="hljs-keyword">continue</span>;
+        <span class="hljs-keyword">case</span> (META_COMMAND_UNRECOGNIZED_COMMAND):
+          <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Unrecognized command &apos;%s&apos;\n&quot;</span>, input_buffer-&gt;buffer);
+          <span class="hljs-keyword">continue</span>;
+      }
+     }
+
+    Statement statement;
+    <span class="hljs-keyword">switch</span> (prepare_statement(input_buffer, &amp;statement)) {
+      <span class="hljs-keyword">case</span> (PREPARE_SUCCESS):
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> (PREPARE_UNRECOGNIZED_STATEMENT):
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Unrecognized keyword at start of &apos;%s&apos;.\n&quot;</span>,
+               input_buffer-&gt;buffer);
+        <span class="hljs-keyword">continue</span>;
+    }
+    execute_statement(&amp;statement);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Executed.\n&quot;</span>);
+  }
+}
+</code></pre>
+<p>makefile&#x4E0E;&#x4E4B;&#x524D;&#x7684;&#x4E00;&#x81F4;&#xFF0C;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x6539;&#x53D8;&#x3002;</p>
+<pre><code class="lang-makefile"><span class="hljs-section">all:</span>
+    gcc -g -O0 main.c -o db
+<span class="hljs-section">clean:</span>
+    rm -rf db
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="part1.html" class="navigation navigation-prev " aria-label="Previous page: 简介和设置REPL">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="part3.html" class="navigation navigation-next " aria-label="Next page: 仅支持追加的单表内存数据库">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"世界上最简单的编译器和虚拟机","level":"1.3","depth":1,"next":{"title":"仅支持追加的单表内存数据库","level":"1.4","depth":1,"path":"part3.md","ref":"./part3.md","articles":[]},"previous":{"title":"简介和设置REPL","level":"1.2","depth":1,"path":"part1.md","ref":"./part1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2.md","mtime":"2023-06-29T12:00:34.293Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-08-06T03:57:22.087Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
