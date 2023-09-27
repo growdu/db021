@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 #include "pager.h"
 #include "row.h"
 #include "table.h"
